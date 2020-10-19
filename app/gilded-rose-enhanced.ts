@@ -23,11 +23,11 @@ export class GildedRose {
             switch (item.name) {
                 case 'Backstage passes to a TAFKAL80ETC concert': {
                     var qual;
-                    if ((item.sellIn > 11 && item.quality < 50)) {
+                    if ((item.sellIn > 11 && item.quality <= 50)) {
                         qual = item.quality + 1;
-                    } else if ((item.sellIn <= 11 && item.sellIn > 6 && item.quality < 50)) {
+                    } else if ((item.sellIn <= 11 && item.sellIn > 6 && item.quality <= 50)) {
                         qual = item.quality + 2;
-                    } else if ((item.sellIn <= 6 && item.sellIn > 1 && item.quality < 50)) {
+                    } else if ((item.sellIn <= 6 && item.sellIn >= 1 && item.quality <= 50)) {
                         qual = item.quality + 3;
                     }
 
