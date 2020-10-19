@@ -1,8 +1,9 @@
 # gilded-rose
 # Final working version
 
-Added 'gilded-rose-enhanced.ts' file to start refactoring and to compare against the original version.
-Added static variable 'itemType'. This will help in further additions of items belonging to same itemType without adding new code.
+Added 'gilded-rose-enhanced.ts' file to start refactoring and to compare against the original version.\
+Added static variable 'itemType'.\
+This will help in further additions of items belonging to same itemType without adding new code.\
 Updated updateQuantity method to take individual item and itemTypes as parameter.
 
 - [x] Backstage passes.\
