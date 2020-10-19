@@ -2,11 +2,13 @@ export class Item {
     name: string;
     sellIn: number;
     quality: number;
+    static itemType: string;
 
-    constructor(name, sellIn, quality) {
+    constructor(name, sellIn, quality, type) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+        Item.itemType = type;
     }
 }
 
@@ -17,17 +19,15 @@ export class GildedRose {
         this.items = items;
     }
 
-    updateQuality() {
-        for (let i = 0; i < this.items.length; i++) {
-            var item = this.items[i];
-            switch (item.name) {
-                case 'Backstage passes to a TAFKAL80ETC concert': {
+    updateQualityOfItem(item: Item, itemType: string) {
+            switch (itemType) {
+                case 'concertPass': {
                     var qual;
-                    if ((item.sellIn > 11 && item.quality < 50)) {
+                    if ((item.sellIn > 11 && item.quality <= 50)) {
                         qual = item.quality + 1;
-                    } else if ((item.sellIn <= 11 && item.sellIn > 6 && item.quality < 50)) {
+                    } else if ((item.sellIn <= 11 && item.sellIn > 6 && item.quality <= 50)) {
                         qual = item.quality + 2;
-                    } else if ((item.sellIn <= 6 && item.sellIn > 1 && item.quality < 50)) {
+                    } else if ((item.sellIn <= 6 && item.sellIn >= 1 && item.quality <= 50)) {
                         qual = item.quality + 3;
                     }
 
@@ -38,22 +38,30 @@ export class GildedRose {
                     }
                     break;
                 }
-                case 'Aged Brie': {
+                case 'cheese': {
                     const qual = item.quality + 1;
                     item.quality = qual >= 50 ? 50 : qual;
                     break;
                 }
-                case 'Sulfuras, Hand of Ragnaros': {
+                case 'legendary': {
                     item.quality = 80;
                     break;
                 }
-                default: {
+                case 'conjured': {
                     var qual;
-                    if (item.name.includes("Conjured") && item.sellIn <= 0) {
+                    if (item.sellIn <= 0) {
                         qual = item.quality - 4;
-                    } else if ((item.name.includes("Conjured") && item.sellIn >= 0) || (!item.name.includes("Conjured") && item.sellIn <= 0)) {
+                    } else if (item.sellIn >= 0) {
                         qual = item.quality - 2;
-                    } else if (!item.name.includes("Conjured") && item.sellIn >= 0) {
+                    } 
+                    item.quality = qual <= 0 ? 0 : qual;
+                    break;
+                }
+                case 'normal': {
+                    var qual;
+                    if (item.sellIn <= 0) {
+                        qual = item.quality - 2;
+                    } else if (item.sellIn >= 0) {
                         qual = item.quality - 1;
                     }
                     item.quality = qual <= 0 ? 0 : qual;
@@ -61,8 +69,7 @@ export class GildedRose {
                 }
             }
 
-            item.sellIn = item.name.includes("Sulfuras, Hand of Ragnaros") ? item.sellIn : item.sellIn - 1;
-        }
+            item.sellIn = itemType.includes("legendary") ? item.sellIn : item.sellIn - 1;
         return this.items;
     }
 }
