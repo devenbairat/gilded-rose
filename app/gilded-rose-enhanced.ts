@@ -67,6 +67,9 @@ export class GildedRose {
                     item.quality = qual <= 0 ? 0 : qual;
                     break;
                 }
+                default: {
+                    throw new Error("Unsupported Itemtype ["+itemType+"]!" )
+                }
             }
 
             item.sellIn = itemType.includes("legendary") ? item.sellIn : item.sellIn - 1;

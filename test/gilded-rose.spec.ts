@@ -159,3 +159,17 @@ describe('Validate Conjured items tests', function () {
 
 });
 
+describe('Validate unsupported itemTypes', function () {
+    it('Item having unsupported itemType should throw error', function () {
+        const itemType   = "unsupportedItemType";
+        const item       = new Item("Conjured Mana Cake", 2, 2, itemType);
+        const gildedRose = new GildedRose([item]);
+
+        try {
+            gildedRose.updateQualityOfItem(item, itemType);
+        } catch (error) {
+            expect(error.message).to.equal("Unsupported Itemtype ["+itemType+"]!");
+        }
+    });
+});
+
