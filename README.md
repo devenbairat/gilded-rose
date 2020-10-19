@@ -4,7 +4,7 @@
 Added 'gilded-rose-enhanced.ts' file to start refactoring and to compare against the original version.\
 Added static variable 'itemType'.\
 This will help in further additions of items belonging to same itemType without adding new code.\
-Updated updateQuantity method to take individual item and itemTypes as parameter.
+Updated updateQuantity method to take individual item and itemType as parameter.
 
 - [x] Backstage passes.\
 Tests added to validate the 'Backstage passes to a TAFKAL80ETC concert' item.
